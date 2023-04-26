@@ -139,84 +139,78 @@
 
 <section id =destinations>
  
-<!-- Want the search bar separate from the map to suit our site and make it more interactive-->
-
-
-<div id="mapsearch" class="mapsearch"></div>
-  <!--Main map application made with Mapbox GL JS( JS library that uses Mapbox GL to render interactive maps)-->
-  
-  
-  <div id='map' style='width: 100%; height: 400px;'></div>
-
-
-<style>
-.mapsearch {
-position: relative;
-z-index: 1;
-width: 60%;
-left: 50%;
-margin-left: -15%;
-top: -50px;
-}
-
-
-.mapsearch-dropdown-item {
-padding: 5px;
-}
-.mapsearch-dropdown-icon {
-margin-right: 10px;
-}
-.mapsearch-dropdown-text {
-color: #5a3fc0;
-font-family: Arial, Helvetica, sans-serif;
-font-size: larger;
-}
-
-
-
-.mapboxgl-ctrl-mapsearch {
-min-width: 100%;
-}
-
-
-
-
-
-</style>
-
+  <!--Main map application made with Mapbox GL JS-->
+  <div id='map' style='width: 100%; height: 400px;position:in-line'; ></div>
   <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiZWtoLWIiLCJhIjoiY2xndmV0NW9lMDMxNDNlcGxwOHcwcmFzNSJ9._gdy1JFrchtkXfh4ZWgFgA';
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v12'
+      style: 'mapbox://styles/mapbox/streets-v11'
+    
+      
 
       
     });
 
+    
+    var geocoder = new MapboxGeocoder({
+accessToken: mapboxgl.accessToken,
+types: 'poi',
+// see https://docs.mapbox.com/api/search/#geocoding-response-object for information about the schema of each response feature
+render: function (item) {
+// extract the item's maki icon or use a default
+var maki = item.properties.maki || 'marker';
+return `<div class='geocoder-dropdown-item'>
+<img class='geocoder-dropdown-icon' src='https://unpkg.com/@mapbox/maki@6.1.0/icons/${maki}-15.svg'>
+<span class='geocoder-dropdown-text'>
+${item.text}
+</span>
+</div>`;
+},
+mapboxgl: mapboxgl
+});
+map.addControl(geocoder);
     //zoom function
     map.addControl(new mapboxgl.NavigationControl());
 
 
-    //map search bar-- move it back on to the map so dropdown dunctin can be used 
+
     
-    var mapsearch = new MapboxGeocoder({
-   accessToken: mapboxgl.accessToken,
-//also added a render function to make the search bar drop down and display icons relating to points of interest to make it suit our site more
-      types:'poi';
-      render;funcion(item)
-
-   mapboxgl: mapboxgl
-  });
- 
-  
-  //Shows the search bar and add its outside of the map
-  document.getElementById('mapsearch').appendChild(mapsearch.onAdd(map));
-
   </script>
   
   
   <!--CSS for map and map search bar-->
+  
+  <style>
+    .geocoder-dropdown-item {
+padding: 5px;
+}
+.geocoder-dropdown-icon {
+margin-right: 10px;
+}
+.geocoder-dropdown-text {
+color: #5a3fc0;
+font-family: Arial, Helvetica, sans-serif;
+font-size: larger;
+}
+    
+  </style>
 
+  <style>
+  
+    
+    </style>
+    </head>
+    <body>
+    
+      
+      
+    
+    
+    <!--Js functions-->
+    <script>
+      
+    </script>
     
   </div>
   
@@ -252,7 +246,7 @@ min-width: 100%;
 
   
 
-
+<br>
 </body>
 
 
