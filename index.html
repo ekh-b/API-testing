@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./style.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"  defer></script>
+
+<!--Mapbox links-->
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+
+
+
+
+  <title>Find My Food</title>
+</head>
+
+<body>
+  
+ <!--NAVBAR-->
+
+  <nav id="main-nav" class="navbar navbar-expand-md navbar-light fixed-top">
+    <div class="container">
+      <div>
+        <a href="#home" class="navbar-brandh">Find My Food</a>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar nav">
+            <li class="nav-item">
+              <a href="#home" class="nav-link-hs">Home</a>
+
+            </li>
+            <li class="nav-item">
+              <a href="#inspire" class="nav-link">Inspire</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#destinations" class="nav-link">Destinations</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+ <!--NAVBAR-->
+
+
+ 
+ <!--HOME-->
+ <section id="home">
+  <div class="container">
+   <h1 class="display-2">Destination 
+      </br>
+       Unknown</h1>
+
+        <h2 class="Tag-line">Take your tastebuds around the world!</h2>
+    </div>
+  </div>
+ </section>
+ 
+
+ <!--Mid section-->
+ <section id="inspire">
+<h2 class="mid-text-h2"> Trending Culinary
+</br> Hotspots </h2>
+
+ <div class="container-mid">
+  <div class="row justify-content-center">
+
+    <div class="col-lg-3 col-md-3 col-sm-12">
+ <div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="./images/Asia.jpg" class= "card-img-top img-fit" alt="Asia">
+  <div class="card-body text-justify">
+    <h5 class="card-title text-center">Asia</h5>
+    <p class="card-text"> 
+      Asia has some of the most scenic landscapes from mountains to jungles and lush beaches.
+      It is rich in culture and a great place to start your culinary journey, as you are spoiled with a variety of flavours! </p>
+  </div>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-3 col-sm-12">
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="./images/Americas.jpg" class= "card-img-top img-fit" alt="Americas"> 
+  <div class="card-body text-justify">
+    <h5 class="card-title text-center">Americas</h5>
+    <p class="card-text"> 
+      The Americas has a range of beautiful countries and diversty in between.
+      It is home to culinary hotspots such as Mexico and the Caribbean. However if you're down for a USA road trip, the choices are endless!</p>
+  </div>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-3 col-sm-12">
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="./images/Europe.jpg" class= "card-img-top img-fit" alt="Europe">
+  <div class="card-body text-justify">
+    <h5 class="card-title text-center">Europe</h5>
+    <p class="card-text">
+      Europe is fantastic for spectacular scenery, from the Swiss Alps to the natural phenomenon of the northern lights.
+      In Europe, you can find spirited tapas bars in Spain, to making your own pasta in Italy!</p>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+<div class="button-element">
+
+  <a href="#" class="button button-1">Inspire Me!</a>
+</div>
+
+</div>
+</section>
+
+ <!--INSPIRE-->
+
+ <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+ <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
+<!--ID's needed to interact with js components-->
+
+<section id =destinations>
+ 
+<!-- Want the search bar separate from the map to suit our site and make it more interactive-->
+
+
+<div id="mapsearch" class="mapsearch"></div>
+  <!--Main map application made with Mapbox GL JS( JS library that uses Mapbox GL to render interactive maps)-->
+  
+  
+  <div id='map' style='width: 100%; height: 400px;'></div>
+
+
+<style>
+.mapsearch {
+position: relative;
+z-index: 1;
+width: 60%;
+left: 50%;
+margin-left: -15%;
+top: -50px;
+}
+
+
+.mapsearch-dropdown-item {
+padding: 5px;
+}
+.mapsearch-dropdown-icon {
+margin-right: 10px;
+}
+.mapsearch-dropdown-text {
+color: #5a3fc0;
+font-family: Arial, Helvetica, sans-serif;
+font-size: larger;
+}
+
+
+
+.mapboxgl-ctrl-mapsearch {
+min-width: 100%;
+}
+
+
+
+
+
+</style>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZWtoLWIiLCJhIjoiY2xndmV0NW9lMDMxNDNlcGxwOHcwcmFzNSJ9._gdy1JFrchtkXfh4ZWgFgA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v12'
+
+      
+    });
+
+    //zoom function
+    map.addControl(new mapboxgl.NavigationControl());
+
+
+    //map search bar-- move it back on to the map so dropdown dunctin can be used 
+    
+    var mapsearch = new MapboxGeocoder({
+   accessToken: mapboxgl.accessToken,
+//also added a render function to make the search bar drop down and display icons relating to points of interest to make it suit our site more
+      types:'poi';
+      render;funcion(item)
+
+   mapboxgl: mapboxgl
+  });
+ 
+  
+  //Shows the search bar and add its outside of the map
+  document.getElementById('mapsearch').appendChild(mapsearch.onAdd(map));
+
+  </script>
+  
+  
+  <!--CSS for map and map search bar-->
+
+    
+  </div>
+  
+  
+    </div>
+</section>
+
+
+
+
+
+  <!--<img src="images/camden food.jpg" class="img-fluid w-100" alt="Image of food stalls around a canal, a hand holding a cardboard tray of fries in the center of this image">
+
+  <ul class="list-unstyled">
+    <li>FOOD IN</li>
+
+    <!link this underscore sectIon to the search form,or it display user location input, make it display red text-->
+   <!--
+    <li>________</li>
+    <li>TO TRY</li>
+    <li>THAT YOU</li>
+    <li>WON'T</li>
+    <li>REGRET! </li>
+      <ul>
+
+
+   --> 
+
+
+ 
+ 
+ <!--DESTINATIONS-->
+
+  
+
+
+</body>
+
+
+
+<!--DESTINATIONS-->
+
+
+<div>
+
+  <p>You have visited this page</p>
+  <!--2nd line should show page visit count- if not check js file -->
+  <p><strong id="count"></strong></p>
+  <p>times!</p>
+
+</div>
+
+
+<!--FOOTER-->
+
+<footer class="footer">
+
+<!--Links-->
+
+<a href = "https://github.com/ekh-b/Find-My-Food-API" class="btn btn-light btn-lg btn-block" role ="button" target="_blank"> Group 7 creation</a>
+
+</footer>
+
+<br>
+<!--JavaScript File needs to stay here-->
+<script src="function.js"></script>
+<script src="visit.js"></script>
+
+</html>
